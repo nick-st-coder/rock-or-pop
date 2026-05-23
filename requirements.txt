@@ -7,6 +7,7 @@ seaborn
 xgboost
 lightgbm
 catboost
+torch
 
 mlflow
 optuna
@@ -20,3 +21,4 @@ fastapi
 uvicorn
 httpx
 pydantic
+marimo
