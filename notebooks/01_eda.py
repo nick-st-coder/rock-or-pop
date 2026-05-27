@@ -268,9 +268,38 @@ def _(mo):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ---
+    """)
+    return
+
+
 @app.cell
 def _(high_pop):
-    high_pop[high_pop['loudness'] < -30]
+    vars = [high_pop["acousticness"], high_pop["instrumentalness"], 
+                            high_pop["duration_ms"], high_pop["liveness"]]
+                        
+    name = ['Acoustic', 'Instrumental', 'Duration', 'Live', 'Popularity']
+    return name, vars
+
+
+@app.cell
+def _(name, show_plot_4x4, vars, y):
+    show_plot_4x4(True, True, vars, y, name)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    - `very long` songs are tend to be `less popular`
+
+    - most values on instrumentalness are located on 0.0 which explains why `there're so much outliers`
+
+    - `liveness and acousticness does not affect popularity`. Some of the songs which are perfect for playing live are as popular as regular songs
+    """)
     return
 
 
@@ -294,6 +323,43 @@ def _(high_pop, plt, sns):
 def _(mo):
     mo.md(r"""
     Here we can see that those features are highly negatively correlated with each other -> `as music become less acoustic, it also starts to be more loud`
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ---
+    """)
+    return
+
+
+@app.cell
+def _(high_pop):
+    high_pop.groupby(['playlist_subgenre'])['track_popularity'].mean().sort_values(ascending=False)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ---
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    #### SUMMARY
+    - `genre: pop` is the most popluar one, `subgenre: global`
+
+    - only `loudness` has positive correlation with popularity, sweetspot: -10db to -2db
+
+    - features like: energy, danceability, valence, acousticness, liveness has `no impact on popularity`
+
+    - `duration of song` and `instrumentalness` has negative correlation with popularity. The sweetspot is around `1,5-3 minutes` long song and almost no instrumental parts.
     """)
     return
 
