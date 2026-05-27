@@ -233,6 +233,42 @@ def _(show_plot_4x4, title, x_vars, y):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
+    Based  on `scatter plot`:
+    - `energy` values are spreaded all across the plot, it has `no relationship` with `popularity` and most of the songs located between 0.5-0.9 -> energy `does not effect popularity` of the song
+
+    - the same with `danceability` except the range if values are starting from 0.2 -> it has `zero impact on popularity`
+
+    - `loudness` on the other side has slightly `positive correlation with popularity`, vast majority of values located between -15 and -3, it also hase some outliers (very quiet soings which are not popular) -> louder tracks are often more popular
+
+    - `valence` just like first two features has no relationship, but data spreaded almost the same all across the plot -> song mood has `no impact`
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ---
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Based on `boxplot`:
+    - `loudness` and `energy` has a lot of outliers -> `loudness` has some unique cases (where there's very quiet music and it'not popular)
+
+    - `valence` is the most stable -> no outliers
+
+    - `danceability` has several outliers near lower whisker -> not significant
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
     ---
     """)
     return
