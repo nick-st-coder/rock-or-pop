@@ -257,11 +257,43 @@ def _(mo):
 def _(mo):
     mo.md(r"""
     Based on `boxplot`:
-    - `loudness` and `energy` has a lot of outliers -> `loudness` has some unique cases (where there's very quiet music and it'not popular)
+    - `Energy` Box Plot - Sits high at approximately 0.69. Ranges from 0.55 to 0.81. Main Range: Most tracks fall between 0.18 and 1.0. Outliers: A long tail of low-energy tracks extends down to 0.0.
 
-    - `valence` is the most stable -> no outliers
+    - `Danceability` Box Plot - Median is on 0.7. Ranges from 0.15 to 0.9.Main Range: Most tracks fall between 0.55 and 0.78. Outliers: some of them are almost 0.1
 
-    - `danceability` has several outliers near lower whisker -> not significant
+    - `Loudness` Box Plot - Very tight main range: -8 to -5, range: -13 to -1. Outliers: ranges from -12 all across to -43, while most of them are just after left whisker. The only case to have outliers on the right side -> rare cases of very loud music
+
+    - `Valence` Box Plot - Median is on 0.5 Main range: 0.38 to 0.7. No outliers. Range: almost 0.0 to almost 1.0
+    """)
+    return
+
+
+@app.cell
+def _(high_pop):
+    high_pop[high_pop['loudness'] < -30]
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ---
+    """)
+    return
+
+
+@app.cell
+def _(high_pop, plt, sns):
+    sns.regplot(x=high_pop['loudness'], y=high_pop['acousticness'])
+
+    plt.show()
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Here we can see that those features are highly negatively correlated with each other -> `as music become less acoustic, it also starts to be more loud`
     """)
     return
 
