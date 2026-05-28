@@ -367,7 +367,7 @@ def _(mo):
 
 @app.cell
 def _(pd):
-    low_pop = pd.read_csv('../data/raw/low_popularity_spotify_data.csv')
+    low_pop = pd.read_csv('../data/raw/spotify/low_popularity_spotify_data.csv')
     return (low_pop,)
 
 
