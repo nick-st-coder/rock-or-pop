@@ -280,7 +280,7 @@ def _(mo):
 def _(high_pop):
     vars = [high_pop["acousticness"], high_pop["instrumentalness"], 
                             high_pop["duration_ms"], high_pop["liveness"]]
-                        
+
     name = ['Acoustic', 'Instrumental', 'Duration', 'Live', 'Popularity']
     return name, vars
 
@@ -531,7 +531,7 @@ def _(mo):
 def _(low_pop):
     var = [low_pop["acousticness"], low_pop["instrumentalness"], 
                             low_pop["duration_ms"], low_pop["liveness"]]
-                        
+
     names = ['Acoustic', 'Instrumental', 'Duration', 'Live', 'Popularity']
     return names, var
 
@@ -645,7 +645,15 @@ def _(mo):
 
     - dataset contained some live recordings which were bad outliers
 
-    - i can write the same conclusions as for the popular music for the rest of the features most of the time there are no relationship at all
+    - overall conclusion is the same as for the popular music -> most of the features has no relationship at all
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ---
     """)
     return
 
