@@ -10,5 +10,7 @@ So let's answer this question together by going to notebooks section! (not finis
 If you don't use uv or marimo here's the quick guide!
 1) use `uv sync` in your terminal, this will install all the packages
 2) go to the notebook 
-3) click on the `open as a marimo notebook` in the top right corner
+3) click on the `open as a marimo notebook` in the top right corner OR if there's no button run `uv run python -m marimo edit notebooks\name.py` in terminal.
 4) click `Run All` to run all cells and enjoy!
+
+If you on 3 step getting error try: `marimo convert .\notebooks\old_name.py -o new_name.py`
