@@ -32,3 +32,4 @@ checkpoints/
 # Data
 data/external
 data/raw
+data/processed

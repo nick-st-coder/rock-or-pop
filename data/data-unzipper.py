@@ -2,7 +2,7 @@ import zipfile
 import os
 
 zip_path = "spotify-music-dataset.zip"
-extract_to = "data/raw"
+extract_to = "data/raw/spotify/"
 
 with zipfile.ZipFile(zip_path, "r") as z:
     z.extractall(extract_to)
