@@ -119,5 +119,27 @@ def _(mo):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    If you want to recreate project -> uncommment line below and run it, this will save clean dataset
+    """)
+    return
+
+
+@app.cell
+def _():
+    # df_clean.to_csv('../data/processed/spotify_clean.csv', index=False
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ---
+    """)
+    return
+
+
 if __name__ == "__main__":
     app.run()
