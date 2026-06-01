@@ -12,8 +12,23 @@ def _():
     from sklearn.pipeline import Pipeline
     from sklearn.compose import ColumnTransformer
     from sklearn.impute import SimpleImputer
+    from sklearn.model_selection import train_test_split, cross_val_score
 
-    return ColumnTransformer, OneHotEncoder, Pipeline, SimpleImputer, pd
+    from sklearn.ensemble import RandomForestRegressor
+    from lightgbm import LGBMRegressor
+
+    import optuna
+
+    import mlflow
+
+    return (
+        ColumnTransformer,
+        OneHotEncoder,
+        Pipeline,
+        SimpleImputer,
+        pd,
+        train_test_split,
+    )
 
 
 @app.cell
@@ -65,10 +80,39 @@ def _(OneHotEncoder, Pipeline, SimpleImputer):
 
 @app.cell
 def _(ColumnTransformer, cat_col, cat_pipe, num_col, num_pipe):
-    transformer = ColumnTransformer([
+    preprocess = ColumnTransformer([
         ("numeric", num_pipe, num_col),
         ("categorical", cat_pipe, cat_col)
     ])
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ---
+    """)
+    return
+
+
+@app.cell
+def _(df):
+    X = df.drop(columns=['track_popularity'])
+    y = df['track_popularity']
+    return X, y
+
+
+@app.cell
+def _(X, train_test_split, y):
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, 
+        y, 
+        train_size=0.8, 
+        random_state=78, 
+        shuffle=True, 
+        # dataset is 1.6k of popular rows and 3.2k of unpopular ones going after each other -> shuffle must be maden
+        stratify=y
+    )
     return
 
 
@@ -85,6 +129,11 @@ def _(mo):
     mo.md(r"""
     #### Baseline - `Random Forest`
     """)
+    return
+
+
+@app.cell
+def _():
     return
 
 
